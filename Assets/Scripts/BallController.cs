@@ -3,6 +3,7 @@ using UnityEngine;
 public class BallController : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
+    private bool isBallLaunched;
     [SerializeField] private float force = 1f;
     [SerializeField] private InputManager inputManager;
     private Rigidbody ballRB;
@@ -24,7 +25,13 @@ public class BallController : MonoBehaviour
 
     private void LaunchBall()
     {
-        ballRB.AddForce(transform.forward * force, ForceMode.Impulse);
+        
+    // now your if check can be framed like a sentence
+    // "if ball is launched, then simply return and do nothing"
+    if (isBallLaunched) return;
+    // "now that the ball is not launched, set it to true and launch the ball"
+    isBallLaunched = true;
+    ballRB.AddForce(transform.forward * force, ForceMode.Impulse);
     }
 
 }
