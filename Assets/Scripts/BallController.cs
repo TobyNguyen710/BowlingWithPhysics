@@ -20,7 +20,7 @@ public class BallController : MonoBehaviour
         inputManager.OnSpacePressed.AddListener(LaunchBall);
         ballRB.isKinematic = true;
         transform.parent = ballAnchor;
-        transform.localPosition = Vector3.up * 2;
+        transform.localPosition = Vector3.right * 1.2f;
     }
 
     // Update is called once per frame
@@ -41,6 +41,7 @@ public class BallController : MonoBehaviour
         ballRB.isKinematic = false;
         ballRB.AddForce(launchIndicator.forward * force, ForceMode.Impulse);
         launchIndicator.gameObject.SetActive(false);
+        
     }
 
 }
