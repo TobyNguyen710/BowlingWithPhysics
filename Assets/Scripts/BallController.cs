@@ -1,5 +1,6 @@
 using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody))]
 public class BallController : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -18,9 +19,9 @@ public class BallController : MonoBehaviour
         // When the space key is pressed the
         // LaunchBall method will be called.
         inputManager.OnSpacePressed.AddListener(LaunchBall);
-        ballRB.isKinematic = true;
-        transform.parent = ballAnchor;
-        transform.localPosition = Vector3.right * 1.2f;
+        Cursor.lockState = CursorLockMode.Locked;
+        ResetBall();
+        
     }
 
     // Update is called once per frame
@@ -42,6 +43,16 @@ public class BallController : MonoBehaviour
         ballRB.AddForce(launchIndicator.forward * force, ForceMode.Impulse);
         launchIndicator.gameObject.SetActive(false);
         
+    }
+    public void ResetBall()
+    {
+        isBallLaunched = false;
+        //We are setting the ball to be a Kinematic Body
+        ballRB.isKinematic = true;
+        launchIndicator.gameObject.SetActive(true);
+        transform.parent = ballAnchor;
+        transform.localPosition = Vector3.zero;
+        // transform.localPosition = Vector3.right * 1.2f;
     }
 
 }
